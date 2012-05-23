@@ -33,15 +33,11 @@
 		
 				
 		<dependency>
-
 			<groupId>org.openmrs.module</groupId>
-						
-			<artifactId>reporting-api</artifactId>
-												
+			<artifactId>reporting</artifactId>
 		</dependency>
 						
 		<!-- End OpenMRS modules -->
-		
 
 		<!-- Begin OpenMRS core -->
 

@@ -20,23 +20,17 @@
 		<dependency>
 			<groupId>org.other.library</groupId> 
 			<artifactId>library-name</artifactId>
-		</dependency> 
+		</dependency>
 		-->
-
-		
 				
 		<!-- Begin OpenMRS modules -->
 				
 		<dependency>
-		
 			<groupId>org.openmrs.module</groupId>
-									
-			<artifactId>reporting-api</artifactId>
-															
+			<artifactId>reporting</artifactId>
 		</dependency>
 				
 		<!-- End OpenMRS modules -->
-		
 
 		<!-- Begin OpenMRS core -->
 		

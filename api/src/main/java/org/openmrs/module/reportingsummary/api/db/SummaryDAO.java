@@ -13,7 +13,7 @@
  */
 package org.openmrs.module.reportingsummary.api.db;
 
-import org.openmrs.module.reportingsummary.api.SummaryService;
+import org.openmrs.module.reportingsummary.api.service.SummaryService;
 
 /**
  *  Database methods for {@link SummaryService}.

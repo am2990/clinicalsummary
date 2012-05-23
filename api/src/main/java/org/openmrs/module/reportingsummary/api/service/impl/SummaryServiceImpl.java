@@ -16,7 +16,7 @@ package org.openmrs.module.reportingsummary.api.service.impl;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.module.reportingsummary.api.SummaryService;
+import org.openmrs.module.reportingsummary.api.service.SummaryService;
 import org.openmrs.module.reportingsummary.api.db.SummaryDAO;
 
 /**
