@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.reportingsummary;
+package org.openmrs.module.reportingsummary.api;
 
 import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
