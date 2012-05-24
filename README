@@ -1,0 +1,34 @@
+Reporting Based Clinical Summary Module
+
+Use case:
+1. Central Server
+- Powerful machine
+- Have all the obs, encounter and patient data
+2. Remote Sites Server
+- Less powerful machine
+- Only have the subset of obs, encounter and patient data
+
+The needs:
+- Every remote sites need to get patient summary
+- Most remote sites are not connected to the central server
+- Central server are available to the world
+
+The proposed solution:
+- Generation process
+  - Patient summary will be generated at the central server because:
+    - Central server is more powerful
+    - Central server have complete set of data
+  - Patient summary can be generated in bulk using nightly task
+  - Patient summary can be generated in bulk from admin page
+  - Patient summary can be generated per patient from patient dashboard
+
+- Printing process
+  - Patient summary can be printed in bulk in both central and remote sites from admin page
+  - Patient summary can be printed per patient in both central and remote sites
+
+- Communication process
+  - All patient summaries can be transported from central server to remote sites
+  - Partial summaries can be transported from central server to remote sites
+    - Partial here means patient summaries that was generated on a certain time interval (last week, last month)
+  - Transferring the can be performed using disk (in situation where internet is not available)
+    - Transferring using disk means the file must be encrypted
