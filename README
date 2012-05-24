@@ -1,6 +1,8 @@
 Reporting Based Clinical Summary Module
 
-Use case:
+Module to generate a summary of patient medical record. The module utilize the reporting framework to generate the data.
+
+The setup:
 1. Central Server
 - Powerful machine
 - Have all the obs, encounter and patient data
@@ -29,6 +31,6 @@ The proposed solution:
 - Communication process
   - All patient summaries can be transported from central server to remote sites
   - Partial summaries can be transported from central server to remote sites
-    - Partial here means patient summaries that was generated on a certain time interval (last week, last month)
+    - Partial means summaries was generated on a certain time interval (last week, last month)
   - Transferring the can be performed using disk (in situation where internet is not available)
     - Transferring using disk means the file must be encrypted
