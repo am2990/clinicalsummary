@@ -20,7 +20,6 @@ import org.openmrs.module.reportingsummary.api.service.SummaryService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 /**
- * Tests {@link ${SummaryService}}.
  */
 public class  SummaryServiceTest extends BaseModuleContextSensitiveTest {
 	

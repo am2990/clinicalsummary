@@ -18,6 +18,8 @@ import java.io.OutputStream;
 
 public class UploadProcessor {
 
+    private byte[] initVector;
+
     public void upload(final OutputStream outputStream, final String password) {
 
     }

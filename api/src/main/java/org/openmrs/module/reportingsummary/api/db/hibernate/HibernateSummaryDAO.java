@@ -22,21 +22,22 @@ import org.openmrs.module.reportingsummary.api.db.SummaryDAO;
  * It is a default implementation of  {@link SummaryDAO}.
  */
 public class HibernateSummaryDAO implements SummaryDAO {
-	protected final Log log = LogFactory.getLog(this.getClass());
-	
-	private SessionFactory sessionFactory;
-	
-	/**
+
+    protected final Log log = LogFactory.getLog(HibernateSummaryDAO.class);
+
+    private SessionFactory sessionFactory;
+
+    /**
      * @param sessionFactory the sessionFactory to set
      */
     public void setSessionFactory(SessionFactory sessionFactory) {
-	    this.sessionFactory = sessionFactory;
+        this.sessionFactory = sessionFactory;
     }
-    
-	/**
+
+    /**
      * @return the sessionFactory
      */
     public SessionFactory getSessionFactory() {
-	    return sessionFactory;
+        return sessionFactory;
     }
 }

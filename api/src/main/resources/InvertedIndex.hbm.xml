@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <class name="org.openmrs.module.reportingsummary.api.InvertedIndex" table="reportingsummary_inverted_index">
+        <id name="id" type="int" column="id" unsaved-value="0">
+            <generator class="native"/>
+        </id>
+
+        <discriminator column="id" insert="false"/>
+
+        <property name="definition"
+                  type="org.openmrs.module.reportingsummary.api.db.hibernate.type.RowPerObjectDataSetDefinitionType"
+                  column="definition" not-null="true"/>
+
+        <many-to-one name="generatedBy" class="org.openmrs.User" not-null="true">
+            <column name="creator"/>
+        </many-to-one>
+
+        <property name="generatedOn" type="java.util.Date" column="date_created" not-null="true" length="19"/>
+
+        <many-to-one name="creator" class="org.openmrs.User" not-null="true">
+            <column name="creator"/>
+        </many-to-one>
+
+        <property name="dateCreated" type="java.util.Date" column="date_created" not-null="true" length="19"/>
+
+        <many-to-one name="changedBy" class="org.openmrs.User" not-null="true">
+            <column name="changed_by"/>
+        </many-to-one>
+
+        <property name="dateChanged" type="java.util.Date" column="date_changed" not-null="true" length="19"/>
+
+        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true"/>
+    </class>
+</hibernate-mapping>

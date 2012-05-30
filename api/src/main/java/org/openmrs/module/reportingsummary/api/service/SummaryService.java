@@ -28,9 +28,4 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public interface SummaryService extends OpenmrsService {
-     
-	/*
-	 * Add service methods here
-	 * 
-	 */
 }
