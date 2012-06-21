@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <!--
+        See http://www.liquibase.org/manual/home#available_database_refactorings
+        for a list of supported elements and attributes
+    -->
+    <changeSet id="20120525110800" author="nribeka">
+        <createTable tableName="reportingsummary_inverted_index">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="definition" type="varchar(38)" defaultValue="">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="generated_by" type="int" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="generated_on" type="datetime" defaultValueDate="0002-11-30T00:00:00.0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="creator" type="int" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="datetime" defaultValueDate="0002-11-30T00:00:00.0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="datetime"/>
+
+            <column name="voided" type="tinyint" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="voided_by" type="int"/>
+            <column name="date_voided" type="datetime"/>
+
+            <column name="uuid" type="varchar(38)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="odkconnector_definition_property"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20120525110900" author="nribeka">
+        <addAutoIncrement tableName="reportingsummary_inverted_index" columnName="id" columnDataType="int"/>
+    </changeSet>
+
+    <changeSet id="20120525111000" author="nribeka">
+        <addForeignKeyConstraint baseColumnNames="generated_by" baseTableName="reportingsummary_inverted_index"
+                                 constraintName="user_who_generated_reportingsummary_inverted_index" deferrable="false" initiallyDeferred="false"
+                                 referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet id="20120525111100" author="nribeka">
+        <addForeignKeyConstraint baseColumnNames="creator" baseTableName="reportingsummary_inverted_index"
+                                 constraintName="user_who_created_reportingsummary_inverted_index" deferrable="false" initiallyDeferred="false"
+                                 referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet id="20120525111200" author="nribeka">
+        <addForeignKeyConstraint baseColumnNames="changed_by" baseTableName="reportingsummary_inverted_index"
+                                 constraintName="user_who_changed_reportingsummary_inverted_index" deferrable="false" initiallyDeferred="false"
+                                 referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+    
+</databaseChangeLog>

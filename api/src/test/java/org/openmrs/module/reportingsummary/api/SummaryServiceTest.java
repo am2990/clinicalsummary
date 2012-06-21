@@ -14,8 +14,15 @@
 package org.openmrs.module.reportingsummary.api;
 
 import static org.junit.Assert.*;
+
+import java.util.Arrays;
+import java.util.Date;
+
 import org.junit.Test;
+import org.openmrs.api.EncounterService;
+import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.reporting.evaluation.EvaluationContext;
 import org.openmrs.module.reportingsummary.api.service.SummaryService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
@@ -25,6 +32,7 @@ public class  SummaryServiceTest extends BaseModuleContextSensitiveTest {
 	
 	@Test
 	public void shouldSetupContext() {
+	
 		assertNotNull(Context.getService(SummaryService.class));
 	}
 }
