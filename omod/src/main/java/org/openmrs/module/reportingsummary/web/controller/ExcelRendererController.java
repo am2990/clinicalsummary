@@ -14,9 +14,6 @@
 package org.openmrs.module.reportingsummary.web.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,8 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.api.context.Context;
-import org.openmrs.module.reporting.dataset.definition.PatientDataSetDefinition;
+
 import org.openmrs.module.reportingsummary.api.io.util.ExcelTemplateRendererHardcode;
 import org.openmrs.notification.Message;
 import org.springframework.stereotype.Controller;
