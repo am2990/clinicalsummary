@@ -13,14 +13,17 @@
 			   calling this script
 	</help>
 
-<!-- 
+ 
 	<diff>
-		<version>1.0-SNAPSHOT</version>
-		<author>nribeka</author>
-		<date></date>
+		<version>1.0</version>
+		<author>motu</author>
+		<date>08-07-2012</date>
 		<description></description>
-		<sql></sql>
+		<sql>
+			CREATE TABLE IF NOT EXISTS  reportingsummary_dsdefinition (id integer not null auto_increment, name varchar(255), dsd_code varchar(255) ,created_on datetime, created_by varchar(255), primary key (id));
+			CREATE TABLE IF NOT EXISTS  reportingsummary_dataset (id integer not null auto_increment, dsd_code varchar(255),  dataset_code integer, dataset_name varchar(255), primary key (id));
+		</sql>
 	</diff>
- -->
+
 	
 </sqldiff>

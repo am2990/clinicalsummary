@@ -1,4 +1,4 @@
-package org.openmrs.module.reportingsummary.api;
+package org.openmrs.module.reportingsummary.api.io.util;
 
 import java.util.ArrayList;
 import java.util.List;

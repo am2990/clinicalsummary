@@ -57,7 +57,8 @@ import org.openmrs.module.reporting.report.renderer.CsvReportRenderer;
 import org.openmrs.module.reporting.report.renderer.ExcelTemplateRenderer;
 import org.openmrs.module.reporting.report.renderer.RenderingException;
 import org.openmrs.module.reporting.report.renderer.SummaryXmlReportRenderer;
-import org.openmrs.module.reportingsummary.api.PatientAttributeConstants;
+import org.openmrs.module.reporting.summary.PatientDataSetDefinitionTest;
+import org.openmrs.module.reportingsummary.api.io.util.PatientAttributeConstants;
 import org.openmrs.module.reportingsummary.api.io.util.PatientDatasetDefinitionMaker;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -83,6 +84,13 @@ public class  ReportingBasedClinicalSummaryModuleManageController {
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}
 	
+	@RequestMapping(value = "/module/reportingsummary/dsdefinition/viewDsd", method = RequestMethod.GET)
+	public void view(ModelMap model) {
+		PatientAttributeConstants.initialize();
+		model.addAttribute("patientAttributes", PatientAttributeConstants.listAttributes());
+		model.addAttribute("user", Context.getAuthenticatedUser());
+	}
+	
 	@RequestMapping(value = "/module/reportingsummary/manage", method = RequestMethod.POST)
 	public String managePost(ModelMap model,HttpServletRequest request) {
 		//PatientAttributeConstants.initialize();
@@ -102,7 +110,7 @@ public class  ReportingBasedClinicalSummaryModuleManageController {
 		//definition.addColumn("id", new PatientIdDataDefinition(), StringUtils.EMPTY, new ObjectFormatter());
         
         AgeCohortDefinition ageFilter=new AgeCohortDefinition();
-        ageFilter.setMinAge(104);
+//        ageFilter.setMinAge(104);
         definition.addRowFilter(ageFilter, null);
         
         
@@ -137,7 +145,9 @@ public class  ReportingBasedClinicalSummaryModuleManageController {
 		model.addAttribute("user", Context.getAuthenticatedUser());
 		return "/module/reportingsummary/manage";
 	}
-		
+	
+
+	
 	private void temp(){
 		PatientDataSetDefinition definition = new PatientDataSetDefinition();
         definition.addColumn("id", new PatientIdDataDefinition(), StringUtils.EMPTY, new ObjectFormatter());

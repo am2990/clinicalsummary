@@ -6,7 +6,6 @@ import org.openmrs.module.reporting.data.converter.DataConverter;
 import org.openmrs.module.reporting.data.patient.definition.PatientDataDefinition;
 import org.openmrs.module.reporting.data.person.definition.BirthdateDataDefinition;
 import org.openmrs.module.reporting.dataset.definition.PatientDataSetDefinition;
-import org.openmrs.module.reportingsummary.api.PatientAttributeConstants;
 
 public class PatientDatasetDefinitionMaker {
 

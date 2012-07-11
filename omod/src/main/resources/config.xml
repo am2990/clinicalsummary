@@ -36,9 +36,20 @@
 		<class>org.openmrs.module.reportingsummary.extension.html.AdminList</class>
 	</extension>
 	
+	
+	<privilege>
+		<name>View DSDefinitions</name>
+		<description>Allows user to view and run Data Set</description>
+	</privilege>
+	<privilege>
+		<name>Manage DSDefinitions</name>
+		<description>Allows user to manage Data Set Definitions</description>
+	</privilege>
+	
+	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-				
+			
 		Summary.hbm.xml
 				
 	</mappingFiles>

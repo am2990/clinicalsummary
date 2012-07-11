@@ -72,4 +72,5 @@
                                  referencedColumnNames="user_id" referencedTableName="users"/>
     </changeSet>
     
+       
 </databaseChangeLog>

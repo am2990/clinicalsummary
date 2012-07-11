@@ -3,7 +3,6 @@
 </script>
 
 <!-- <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/reportingsummary/styles/jquery-ui.css" /> -->
-<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-lightness/jquery-ui.css" />
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/reportingsummary/styles/paging.css" />
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/reportingsummary/styles/common.css" />
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/reportingsummary/styles/ui.multiselect.css" />

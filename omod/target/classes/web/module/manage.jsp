@@ -2,10 +2,13 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 
-<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-lightness/jquery-ui.css" />
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
+<!-- <link type="text/css" rel="stylesheet" href="/openmrs18/moduleResources/reportingsummary/styles/jquery-ui.css" /> -->
+
+<script type="text/javascript" src="/openmrs18/moduleResources/reportingsummary/scripts/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/openmrs18/moduleResources/reportingsummary/scripts/jquery/jquery-ui.min.js"></script>
+
+
 <%@ include file="includes/js_css.jsp" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
 <head> 
