@@ -16,19 +16,30 @@ package org.openmrs.module.reportingsummary.web.controller;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.PatientIdentifier;
+import org.openmrs.PatientIdentifierType;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.reporting.cohort.definition.AgeCohortDefinition;
+import org.openmrs.module.reporting.cohort.definition.PatientIdentifierCohortDefinition;
+import org.openmrs.module.reporting.cohort.definition.SqlCohortDefinition;
 import org.openmrs.module.reporting.dataset.definition.PatientDataSetDefinition;
 //import org.openmrs.module.reporting.dataset.definition.service.DataSetDefinitionService;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
@@ -38,6 +49,7 @@ import org.openmrs.module.reporting.report.definition.ReportDefinition;
 import org.openmrs.module.reporting.report.definition.service.ReportDefinitionService;
 import org.openmrs.module.reporting.report.renderer.CsvReportRenderer;
 import org.openmrs.module.reporting.report.renderer.RenderingException;
+import org.openmrs.module.reporting.report.renderer.XmlReportRenderer;
 import org.openmrs.module.reportingsummary.api.DataSet;
 import org.openmrs.module.reportingsummary.api.DataSetDefinition;
 import org.openmrs.module.reportingsummary.api.io.util.PatientDatasetDefinitionMaker;
@@ -59,12 +71,12 @@ public class  ExecuteSummariesController {
 	
 	
 	@RequestMapping(value = "/module/reportingsummary/dsdefinition/executeSummaries", method = RequestMethod.GET)
-	public String manage(ModelMap model , HttpServletRequest request) {
+	public String manage(ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 		
 		String id = request.getParameter("id");
 		String view = request.getParameter("view");
 		String dsdId = request.getParameter("dsdId");
-		
+		Map<String, org.openmrs.module.reporting.dataset.DataSet> mp = null;
 		System.out.println("Viewing Jsp"+ id+"view"+view+"dsd "+ dsdId);
 
 		DataSetDefinitionService dsdService=Context.getService(DataSetDefinitionService.class);
@@ -74,6 +86,18 @@ public class  ExecuteSummariesController {
 		
 		PatientDataSetDefinition definition=new PatientDataSetDefinition();
 		definition = PatientDatasetDefinitionMaker.PatientDatasetDefinition(ds);
+		
+		PatientIdentifierCohortDefinition ptFilter=new PatientIdentifierCohortDefinition();
+//		ptFilter.addTypeToMatch(new PatientIdentifierType(1));
+//		ptFilter.setId(Integer.parseInt(id));
+		String sqlQuery = "SELECT distinct patient_id FROM patient WHERE patient_id = "+ id;
+		SqlCohortDefinition sqlCohortDefinition = new SqlCohortDefinition(sqlQuery);	
+		definition.addRowFilter(sqlCohortDefinition, null);
+		
+//		AgeCohortDefinition ageFilter=new AgeCohortDefinition();
+//		ageFilter.setMaxAge(30);
+//		definition.addRowFilter(ageFilter, null);
+		
 		ReportDefinition reportDefinition = new ReportDefinition();
         reportDefinition.setName("Test Report");
         reportDefinition.addDataSetDefinition("PatientDataSetDefinition", definition, null);
@@ -86,19 +110,23 @@ public class  ExecuteSummariesController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		OutputStream os = null;
-		String summary = null;
-//		try {
-////				os = new FileOutputStream(summary);
-//		} catch (FileNotFoundException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
+		ServletOutputStream resp = null;
+		
+		
+		try {
+				resp = response.getOutputStream();
+	
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         CsvReportRenderer csvReportRenderer = new CsvReportRenderer();
+        
         try {
+        	
 			csvReportRenderer.render(data, "output:csv", System.out);
-//			csvReportRenderer.render(data, "output:csv", os);
-
+			csvReportRenderer.render(data, "output:csv", resp);
+			
 		} catch (RenderingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,7 +137,7 @@ public class  ExecuteSummariesController {
 
 		
 		
-		model.addAttribute("contents", summary );
+		model.addAttribute("contents",  resp);
 		return "/module/reportingsummary/dsdefinition/resultView";
  
 	}
