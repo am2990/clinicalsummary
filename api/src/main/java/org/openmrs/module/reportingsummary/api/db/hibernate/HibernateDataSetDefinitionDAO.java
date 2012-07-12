@@ -21,6 +21,7 @@ import java.util.ListIterator;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.Patient;
@@ -132,15 +133,16 @@ public class HibernateDataSetDefinitionDAO implements DataSetDefinitionDAO {
 		return (DataSet) sessionFactory.getCurrentSession().merge(DataSet);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<DataSet> listDataSets(String name)
 			throws DAOException {
 		
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DataSet.class,"DataSet");
-		System.out.println("code inside hibernate"+name);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DataSet.class);
+		System.out.println("code inside hibernate "+ name);
 		if(StringUtils.isNotBlank(name)){
-			criteria.add(Restrictions.eq("dsd_code", name));
-			criteria.addOrder(Order.asc("dataset_code"));
+			criteria.add(Expression.eq("dsdCode", name));
+			criteria.addOrder(Order.asc("datasetCode"));
 		}
 		
 		List<DataSet> l = criteria.list();

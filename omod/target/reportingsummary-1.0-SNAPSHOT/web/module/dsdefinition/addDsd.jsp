@@ -34,24 +34,29 @@ function setPage(type){window.location.href=openmrsContextPath+'/module/reportin
 
 	
 	
-	<td><spring:message code="general.name"/></td>: <input type="text" name="DSDName" value="" /><br />
+	<td><spring:message code="general.name"/></td>: <input type="text" name="DSDName" value='${dataSetDefinition.definitionName}'/><br />
 	</br>
-	<td><spring:message code="reportingsummary.DSD.code"/></td>: <input type="text" name="DSDCode" value="" /><br />
+	<td><spring:message code="reportingsummary.DSD.code"/></td>: <input type="text" name="DSDCode" value='${dataSetDefinition.dsdcode}'/><br />
 	</br>
     
     <select id="datasets" class="multiselect" multiple="multiple" name="datasets[]">
     	<c:forEach items="${patientAttributes}" var="pa">
 			<option value="${pa}">${pa}</option>
 		</c:forEach>
+		<c:forEach items="${selectedPatientAttributes}" var="spa">
+			<option value="${spa.datasetName}" selected="selected" >${spa.datasetName}</option>
+		</c:forEach>
     </select>
     </br>
     <input type="submit" class="ui-button ui-widget ui-state-default ui-corner-all" value="<spring:message code="general.save"/>">
 	<input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="<spring:message code="general.cancel"/>" onclick="ACT.go('viewDsd.form');">
 </form>
-
+<!-- 
 <input type="submit" class="ui-button ui-widget ui-state-default ui-corner-all" value="<spring:message code="general.save"/>">
 <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="<spring:message code="general.cancel"/>" onclick="ACT.go('listDataElement.form');">
-
+ -->
+ <input type="hidden" id="dsdId" name="dsdId" value = "${dataSetDefinition.id}"/>
+ 
 </body> 
 
 </html>

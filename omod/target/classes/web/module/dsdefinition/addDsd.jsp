@@ -34,9 +34,9 @@ function setPage(type){window.location.href=openmrsContextPath+'/module/reportin
 
 	
 	
-	<td><spring:message code="general.name"/></td>: <input type="text" name="DSDName" <c:out value='${dataSetDefinition.definitionName}'/> /><br />
+	<td><spring:message code="general.name"/></td>: <input type="text" name="DSDName" value='${dataSetDefinition.definitionName}'/><br />
 	</br>
-	<td><spring:message code="reportingsummary.DSD.code"/></td>: <input type="text" name="DSDCode" <c:if value="<%= dataSetDefinition.contains("dsdcode") %>"></c:if>> /><br />
+	<td><spring:message code="reportingsummary.DSD.code"/></td>: <input type="text" name="DSDCode" value='${dataSetDefinition.dsdcode}'/><br />
 	</br>
     
     <select id="datasets" class="multiselect" multiple="multiple" name="datasets[]">
@@ -44,7 +44,7 @@ function setPage(type){window.location.href=openmrsContextPath+'/module/reportin
 			<option value="${pa}">${pa}</option>
 		</c:forEach>
 		<c:forEach items="${selectedPatientAttributes}" var="spa">
-			<option value="${pa}" selected="selected" >${pa}</option>
+			<option value="${spa.datasetName}" selected="selected" >${spa.datasetName}</option>
 		</c:forEach>
     </select>
     </br>

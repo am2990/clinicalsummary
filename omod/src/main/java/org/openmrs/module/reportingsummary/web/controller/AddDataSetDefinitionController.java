@@ -81,8 +81,9 @@ public class  AddDataSetDefinitionController {
 			ArrayList<String> allds = PatientAttributeConstants.listAttributes();
 			ListIterator<DataSet> li = sds.listIterator();
 			while(li.hasNext()){
-				allds.remove(li.toString());
-				li.next();
+				allds.remove(li.next().getDatasetName());
+				System.out.println("Update DSD:1"   );
+//				li.next();
 				
 			}
 			
@@ -141,8 +142,7 @@ public class  AddDataSetDefinitionController {
 			ListIterator<DataSet> li = dsList.listIterator();
 
 			while(li.hasNext()){
-				dsdService.deleteDataSet((DataSet)li);
-				li.next();
+				dsdService.deleteDataSet(li.next());
 				
 			}
 			

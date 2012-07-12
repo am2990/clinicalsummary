@@ -1,9 +1,16 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="../template/localHeader.jsp"%>
+<%@ include file="../includes/js_css.jsp" %>
+
 <openmrs:require privilege="View DSDefinitions" otherwise="/login.htm" redirect="/module/reportingsummary/viewDefinition.form" />
 
 <spring:message var="pageTitle" code="reportingsummary.DSD.view" scope="page"/>
+
+<script>
+function setPage(){window.location.href=openmrsContextPath+'/module/reportingsummary/dsdefinition/addDsd.form'}
+</script>
+
 
 <h2><spring:message code="reportingsummary.DSD.view"/></h2>	
 
@@ -11,7 +18,7 @@
 <c:forEach items="${errors.allErrors}" var="error">
 	<span class="error"><spring:message code="${error.defaultMessage}" text="${error.defaultMessage}"/></span><
 </c:forEach>
-<input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="<spring:message code='reportingsummary.DSD.add'/>" onclick="window.open('/openmrs18/module/reportingsummary/dsdefinition/addDsd.form','Add DSD','status=1');"/>
+<input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="<spring:message code='reportingsummary.DSD.add'/>" onclick="setPage();""/>
 
 <br /><br />
 <input type="hidden" id="pageId" value="listDSDPage" />
@@ -34,8 +41,7 @@
 	<th>No</th>
 	<th><spring:message code="general.name"/></th>
 	<th><spring:message code="reportingsummary.DSD.code"/></th>
-	<!-- <th><spring:message code="reportingsummary.DSD.createdOn"/></th>
-	<th><spring:message code="reportingsummary.DSD.createdBy"/></th> -->
+	
 	<th>Data Sets</th>
 	<th>Download</th>
 	<th>View</th>
@@ -44,24 +50,17 @@
 	<tr class='${varStatus.index % 2 == 0 ? "oddRow" : "evenRow" } '>
 		<td><input type="checkbox" name="ids" value="${dsd.id}"/></td>
 		<td><c:out value="${(( pagingUtil.currentPage - 1  ) * pagingUtil.pageSize ) + varStatus.count }"/></td>	
-		<td><a href="#" onclick="window.open('/openmrs18/module/reportingsummary/dsdefinition/addDsd.form');">${dsd.name}</a> </td>
-		<td>${dsd.code}</td>
-		<!-- <td><openmrs:formatDate date="${dsd.createdOn}" type="textbox"/></td>
-		<td>${dsd.createdBy}</td> -->
+		<td><a href="#" onclick="window.open('/openmrs18/module/reportingsummary/dsdefinition/addDsd.form?dsdId=${dsd.id}');">${dsd.definitionName}</a> </td>
+		<td>${dsd.dsdcode}</td>
+		
 		<td>
-			<c:choose>
-				<c:when test="${not empty dsd.datasets }">
-					<a href="#" onclick="window.open('/openmrs18/moduleResources/reportingsummary/dsdefinition/addDsd.form');" title="Map datasets to this definition">Change Datasets</a>
-					&nbsp;&nbsp;<td>
-					<!-- <a href="#" onclick="ReportingSummary.setOutputType('download');ReportingSummary.showDialog('${ dsd.id}');" >Run</a> -->
-					<a href = openmrsContextPath+'/module/reportingsummary/summaryrenderer.form?type='${dsd.id}'>Run</a>
-					</td>
-				</c:when>
-				<c:otherwise>
-					<a href="#" onclick="window.open('/openmrs18/moduleResources/reportingsummary/dsdefinition/addDsd.form?dsdId=${dsd.id}');" title="Map datasets to this definition">Add Datasets</a>
-					<td>Download</td>
-				</c:otherwise>
-			</c:choose>
+			
+			<a href="#" onclick="window.open('/openmrs18/module/reportingsummary/dsdefinition/addDsd.form?dsdId=${dsd.id}');" title="Map datasets to this definition">Change Datasets</a>
+			&nbsp;&nbsp;<td>
+			<!-- <a href="#" onclick="ReportingSummary.setOutputType('download');ReportingSummary.showDialog('${ dsd.id}');" >Run</a> -->
+			<a href = openmrsContextPath+'/module/reportingsummary/summaryrenderer.form?type='${dsd.id}'>Run</a>
+		</td>
+			
 		</td>
 		<td><a href="#" onclick="ReportingSummary.setOutputType('view');ReportingSummary.showDialog('${dsd.id}');" >View</a></td>
 	</tr>

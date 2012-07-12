@@ -143,30 +143,30 @@ var CHECK =
 			}
 		});
 	},
-	reportDataElementPage : function()
+	listDSDPage : function()
 	{
-		jQuery('.date-pick').datepicker({yearRange:'c-30:c+30', dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
-		var validator = jQuery("#reportDataElementForm").validate(
-				{
-					event : "blur",
-					rules : 
-					{
-						"reportId" : { required : true},
-						"dataElementId" : { required : true},
-						"queryId" : {required : true}
-						
-					},
-					submitHandler: function(form) {
-						form.submit();
-						
-						//return true;
-					}
-				});
+//		jQuery('.date-pick').datepicker({yearRange:'c-30:c+30', dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
+//		var validator = jQuery("#reportDataElementForm").validate(
+//				{
+//					event : "blur",
+//					rules : 
+//					{
+//						"reportId" : { required : true},
+//						"dataElementId" : { required : true},
+//						"queryId" : {required : true}
+//						
+//					},
+//					submitHandler: function(form) {
+//						form.submit();
+//						
+//						//return true;
+//					}
+//				});
 		
 		jQuery('#excecuteQuery').dialog({
 			autoOpen: false,
 			modal: true,
-			title: 'Execute report',
+			title: 'Execute Definition',
 			width: '40%',
 			buttons: {
 				"Run": function() {
