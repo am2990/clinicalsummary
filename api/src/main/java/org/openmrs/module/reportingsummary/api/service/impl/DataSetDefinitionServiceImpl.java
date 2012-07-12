@@ -24,17 +24,35 @@ import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.reportingsummary.api.DataSet;
 import org.openmrs.module.reportingsummary.api.DataSetDefinition;
 import org.openmrs.module.reportingsummary.api.db.DataSetDefinitionDAO;
+import org.openmrs.module.reportingsummary.api.db.InvertedIndexDAO;
 import org.openmrs.module.reportingsummary.api.service.DataSetDefinitionService;
 
 public class DataSetDefinitionServiceImpl extends BaseOpenmrsService implements DataSetDefinitionService {
 
     private DataSetDefinitionDAO dao;
-	@Override
+	
+    /**
+     * @return the DataSetDefinitionDAO
+     */
+    public DataSetDefinitionDAO getDataSetDefinitionDAO() {
+        return dao;
+    }
+
+    /**
+     * @param DataSetDefinitionDAO the DataSetDefinitionDAO
+     */
+    public void setDataSetDefinitionDAO(final DataSetDefinitionDAO dao) {
+        this.dao = dao;
+    }
+    
+    
+    @Override
 	public DataSetDefinition saveDataSetDefinition(DataSetDefinition dsd)
 			throws APIException {
 		return dao.saveDataSetDefinition(dsd);
 	}
 
+	
 	@Override
 	public List<DataSetDefinition> listDataSetDefinition() throws APIException {
 		// TODO Auto-generated method stub
@@ -72,12 +90,12 @@ public class DataSetDefinitionServiceImpl extends BaseOpenmrsService implements 
 		return dao.saveDataSet(DataSet);
 	}
 
-	@Override
-	public List<DataSetDefinition> listDataSet(Integer dsdCode)
-			throws DAOException {
-		
-		return dao.listDataSet(dsdCode);
-	}
+//	@Override
+//	public List<DataSetDefinition> listDataSet(Integer dsdCode)
+//			throws DAOException {
+//		
+//		return dao.listDataSet(dsdCode);
+//	}
 
 	@Override
 	public DataSet getDataSet(Integer dsdCode, String name) throws DAOException {
@@ -86,7 +104,19 @@ public class DataSetDefinitionServiceImpl extends BaseOpenmrsService implements 
 	}
 
 	@Override
-	public void deleteDataSet(Integer dsdCode, String name) throws DAOException {
-		dao.deleteDataSet(dsdCode, name);
+	public void deleteDataSet(DataSet ds) throws DAOException {
+		dao.deleteDataSet(ds);
+	}
+
+	@Override
+	public List<DataSet> listDataSets(Integer dsdCode) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DataSet> listDataSets(String dsd_code) throws DAOException {
+		// TODO Auto-generated method stub
+		return dao.listDataSets(dsd_code);
 	}
 }

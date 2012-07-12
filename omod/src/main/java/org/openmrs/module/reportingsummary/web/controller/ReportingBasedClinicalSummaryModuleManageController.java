@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,8 +60,10 @@ import org.openmrs.module.reporting.report.renderer.ExcelTemplateRenderer;
 import org.openmrs.module.reporting.report.renderer.RenderingException;
 import org.openmrs.module.reporting.report.renderer.SummaryXmlReportRenderer;
 import org.openmrs.module.reporting.summary.PatientDataSetDefinitionTest;
+import org.openmrs.module.reportingsummary.api.DataSetDefinition;
 import org.openmrs.module.reportingsummary.api.io.util.PatientAttributeConstants;
 import org.openmrs.module.reportingsummary.api.io.util.PatientDatasetDefinitionMaker;
+import org.openmrs.module.reportingsummary.api.service.DataSetDefinitionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
@@ -86,7 +90,17 @@ public class  ReportingBasedClinicalSummaryModuleManageController {
 	
 	@RequestMapping(value = "/module/reportingsummary/dsdefinition/viewDsd", method = RequestMethod.GET)
 	public void view(ModelMap model) {
+		
+		DataSetDefinitionService dsdService=Context.getService(DataSetDefinitionService.class);
+		List<DataSetDefinition> dsdefnitions = dsdService.listDataSetDefinition();
+		ListIterator<DataSetDefinition> li = dsdefnitions.listIterator();
+		while(li.hasNext()){
+			DataSetDefinition dsd = new DataSetDefinition();
+			System.out.println("DSD List"+ dsd.getDefinitionName()+","+dsd.getDsdcode());
+			li.next();
+		}
 		PatientAttributeConstants.initialize();
+		model.addAttribute("dsdefinitions", dsdefnitions);
 		model.addAttribute("patientAttributes", PatientAttributeConstants.listAttributes());
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}
@@ -108,7 +122,7 @@ public class  ReportingBasedClinicalSummaryModuleManageController {
 		PatientDataSetDefinition definition=new PatientDataSetDefinition();
 		definition = PatientDatasetDefinitionMaker.PatientDatasetDefinition(params);
 		//definition.addColumn("id", new PatientIdDataDefinition(), StringUtils.EMPTY, new ObjectFormatter());
-        
+     
         AgeCohortDefinition ageFilter=new AgeCohortDefinition();
 //        ageFilter.setMinAge(104);
         definition.addRowFilter(ageFilter, null);

@@ -43,23 +43,20 @@ public interface DataSetDefinitionService extends OpenmrsService {
 	DataSetDefinition saveDataSetDefinition(String Code,String name,
 			ArrayList<String> dataSets) throws APIException;
 
-
 	DataSetDefinition getDataSetDefinitionbyId(Integer id) throws APIException;
 
+	DataSetDefinition getDataSetDefinitionbyName(String name) throws APIException;
 
-	DataSetDefinition getDataSetDefinitionbyName(String name)
-			throws APIException;
+	void deleteDataSetDefinition(DataSetDefinition dataSetDefinition) throws APIException;
 
-
-	void deleteDataSetDefinition(DataSetDefinition dataSetDefinition)
-			throws APIException;
-
-	DataSet saveDataSet(DataSet DataSet) throws DAOException;
+	DataSet saveDataSet(DataSet DataSet) throws APIException;
     
-    List<DataSetDefinition> listDataSet(Integer dsdCode) throws DAOException;
+    List<DataSet> listDataSets(Integer dsdCode) throws APIException;
 
-    DataSet getDataSet(Integer dsdCode,String name) throws DAOException;
+    List<DataSet> listDataSets(String dsd_code) throws APIException;
+    
+    DataSet getDataSet(Integer dsdCode,String name) throws APIException;
 
-	void deleteDataSet(Integer dsdCode,String name)
-			throws DAOException;
+	void deleteDataSet(DataSet ds) throws APIException;
+
 }

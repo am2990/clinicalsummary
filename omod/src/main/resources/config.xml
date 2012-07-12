@@ -51,7 +51,8 @@
 	<mappingFiles>
 			
 		Summary.hbm.xml
-				
+		DataSet.hbm.xml
+		DataSetDefinition.hbm.xml	
 	</mappingFiles>
 
 	<!-- Internationalization -->

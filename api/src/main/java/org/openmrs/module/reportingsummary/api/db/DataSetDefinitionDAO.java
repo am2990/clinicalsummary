@@ -45,8 +45,6 @@ public interface DataSetDefinitionDAO {
 			throws DAOException;
 
 
-	void deleteDataSetDefinition(DataSetDefinition dataSetDefinition)
-			throws DAOException;
 	
 	
 	//Datasets
@@ -57,7 +55,13 @@ public interface DataSetDefinitionDAO {
 
     DataSet getDataSet(Integer dsdCode,String name) throws DAOException;
 
-	void deleteDataSet(Integer dsdCode,String name)
+	List<DataSet> listDataSets(String dsd_code) throws DAOException;
+
+
+	void deleteDataSet(DataSet ds) throws DAOException;
+	
+	void deleteDataSetDefinition(DataSetDefinition dataSetDefinition)
 			throws DAOException;
+	
 
 }

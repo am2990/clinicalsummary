@@ -34,8 +34,8 @@
 	<th>No</th>
 	<th><spring:message code="general.name"/></th>
 	<th><spring:message code="reportingsummary.DSD.code"/></th>
-	<th><spring:message code="reportingsummary.DSD.createdOn"/></th>
-	<th><spring:message code="reportingsummary.DSD.createdBy"/></th>
+	<!-- <th><spring:message code="reportingsummary.DSD.createdOn"/></th>
+	<th><spring:message code="reportingsummary.DSD.createdBy"/></th> -->
 	<th>Data Sets</th>
 	<th>Download</th>
 	<th>View</th>
@@ -52,15 +52,18 @@
 			<c:choose>
 				<c:when test="${not empty dsd.datasets }">
 					<a href="#" onclick="window.open('/openmrs18/moduleResources/reportingsummary/dsdefinition/addDsd.form');" title="Map datasets to this definition">Change Datasets</a>
-					&nbsp;&nbsp;<td><a href="#" onclick="ReportingSummary.setOutputType('download');ReportingSummary.showDialog('${ dsd.code}');" >Run</a></td>
+					&nbsp;&nbsp;<td>
+					<!-- <a href="#" onclick="ReportingSummary.setOutputType('download');ReportingSummary.showDialog('${ dsd.id}');" >Run</a> -->
+					<a href = openmrsContextPath+'/module/reportingsummary/summaryrenderer.form?type='${dsd.id}'>Run</a>
+					</td>
 				</c:when>
 				<c:otherwise>
-					<a href="#" onclick="window.open('/openmrs18/moduleResources/reportingsummary/dsdefinition/addDsd.form?dsdCode=${dsd.code}');" title="Map datasets to this definition">Add Datasets</a>
+					<a href="#" onclick="window.open('/openmrs18/moduleResources/reportingsummary/dsdefinition/addDsd.form?dsdId=${dsd.id}');" title="Map datasets to this definition">Add Datasets</a>
 					<td>Download</td>
 				</c:otherwise>
 			</c:choose>
 		</td>
-		<td><a href="#" onclick="ReportingSummary.setOutputType('view');ReportingSummary.showDialog('${dsd.code}');" >View</a></td>
+		<td><a href="#" onclick="ReportingSummary.setOutputType('view');ReportingSummary.showDialog('${dsd.id}');" >View</a></td>
 	</tr>
 </c:forEach>
 

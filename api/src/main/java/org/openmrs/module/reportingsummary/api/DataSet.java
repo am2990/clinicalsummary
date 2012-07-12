@@ -1,20 +1,17 @@
 package org.openmrs.module.reportingsummary.api;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import org.openmrs.BaseOpenmrsData;
-import org.openmrs.Patient;
-import org.openmrs.User;
-import org.openmrs.module.reporting.dataset.definition.RowPerObjectDataSetDefinition;
 
-public class DataSet extends BaseOpenmrsData implements Serializable{
+
+
+public class DataSet implements Serializable{
 	
 	private Integer id;
 
     private String datasetName;
 
-    private int datasetCode;
+    private Integer datasetCode;
     
     private String dsdCode;
     
@@ -34,11 +31,11 @@ public class DataSet extends BaseOpenmrsData implements Serializable{
 		this.datasetName = datasetName;
 	}
     
-    public int getDatasetcode() {
+    public Integer getDatasetCode() {
 		return datasetCode;
 	}
 
-    public void setDatasetcode(int datasetCode) {
+    public void setDatasetCode(Integer datasetCode) {
 		this.datasetCode = datasetCode;
 	}
     

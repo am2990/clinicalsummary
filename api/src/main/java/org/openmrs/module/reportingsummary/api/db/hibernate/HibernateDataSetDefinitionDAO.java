@@ -21,6 +21,7 @@ import java.util.ListIterator;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
@@ -94,7 +95,7 @@ public class HibernateDataSetDefinitionDAO implements DataSetDefinitionDAO {
 			dsname = (String) li.next();
 			ds.setDatasetName(dsname);
 			ds.setDsdCode(Code);
-			ds.setDatasetcode(i);
+			ds.setDatasetCode(i);
 			i++;
 			System.out.println("Element 1 = " + ds.getDatasetName());
 			dsdService.saveDataSet(ds);
@@ -125,17 +126,26 @@ public class HibernateDataSetDefinitionDAO implements DataSetDefinitionDAO {
 		return dataSetDefinition;
 	}
 
-	
-	@Override
-	public void deleteDataSetDefinition(DataSetDefinition dataSetDefinition) throws DAOException {
-		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().delete(dataSetDefinition);
-	}
 
 	@Override
 	public DataSet saveDataSet(DataSet DataSet) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		return (DataSet) sessionFactory.getCurrentSession().merge(DataSet);
+	}
+	
+	@Override
+	public List<DataSet> listDataSets(String name)
+			throws DAOException {
+		
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DataSet.class,"DataSet");
+		System.out.println("code inside hibernate"+name);
+		if(StringUtils.isNotBlank(name)){
+			criteria.add(Restrictions.eq("dsd_code", name));
+			criteria.addOrder(Order.asc("dataset_code"));
+		}
+		
+		List<DataSet> l = criteria.list();
+		
+		return l;
 	}
 
 	@Override
@@ -145,6 +155,7 @@ public class HibernateDataSetDefinitionDAO implements DataSetDefinitionDAO {
 		return null;
 	}
 
+	
 	@Override
 	public DataSet getDataSet(Integer dsdCode, String name) throws DAOException {
 		// TODO Auto-generated method stub
@@ -152,10 +163,17 @@ public class HibernateDataSetDefinitionDAO implements DataSetDefinitionDAO {
 	}
 
 	@Override
-	public void deleteDataSet(Integer dsdCode, String name) throws DAOException {
-		// TODO Auto-generated method stub
+	public void deleteDataSet(DataSet ds) throws DAOException {
+		
+		sessionFactory.getCurrentSession().delete(ds);
 		
 	}
-
+	
+	@Override
+	public void deleteDataSetDefinition(DataSetDefinition dataSetDefinition) throws DAOException {
+	
+		sessionFactory.getCurrentSession().delete(dataSetDefinition);
+	}
+	
 	
 }

@@ -1,14 +1,9 @@
 package org.openmrs.module.reportingsummary.api;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import org.openmrs.BaseOpenmrsData;
-import org.openmrs.Patient;
-import org.openmrs.User;
-import org.openmrs.module.reporting.dataset.definition.RowPerObjectDataSetDefinition;
 
-public class DataSetDefinition extends BaseOpenmrsData implements Serializable{
+public class DataSetDefinition implements Serializable{
 	
 	private Integer id;
 
