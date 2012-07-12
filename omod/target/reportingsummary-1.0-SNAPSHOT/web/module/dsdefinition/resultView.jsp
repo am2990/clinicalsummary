@@ -20,7 +20,7 @@
 	<tr>
 	
 	<!-- Modified the back link from report.form to listReport.form  -->
-		<td><input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onclick="ACT.go('viewDsd.form');"/></td>
+		<td><input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onclick="ACT.go('listReport.form');"/></td>
 	</tr>
 </table>
 <span class="boxHeader"><spring:message code="CSV Report"/></span>
