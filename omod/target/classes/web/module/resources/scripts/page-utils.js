@@ -31,8 +31,8 @@ ReportingSummary = {
 		setOutputType : function(type){
 			jQuery("#outputType").val(type);
 		},
-		showDialog : function(reportId){
-			jQuery("#reportId").val(reportId);
+		showDialog : function(dsdId){
+			jQuery("#dsdId").val(dsdId);
 			jQuery('#excecuteQuery').dialog('open');
 		},
 		upload : function(){

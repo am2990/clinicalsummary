@@ -1,6 +1,8 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="../template/localHeader.jsp"%>
+<%@ include file="../includes/js_css.jsp" %>
+
 <openmrs:require privilege="View DSDefinitions" otherwise="/login.htm" redirect="/module/reportingsummary/viewDefinition.form" />
 
 <spring:message var="pageTitle" code="reportingsummary.DSD.view" scope="page"/>
@@ -56,7 +58,7 @@ function setPage(){window.location.href=openmrsContextPath+'/module/reportingsum
 			<a href="#" onclick="window.open('/openmrs18/module/reportingsummary/dsdefinition/addDsd.form?dsdId=${dsd.id}');" title="Map datasets to this definition">Change Datasets</a>
 			&nbsp;&nbsp;<td>
 			<!-- <a href="#" onclick="ReportingSummary.setOutputType('download');ReportingSummary.showDialog('${ dsd.id}');" >Run</a> -->
-			<a href = openmrsContextPath+'/module/reportingsummary/summaryrenderer.form?type='${dsd.id}'>Run</a>
+			<a href = openmrsContextPath+'/module/reportingsummary/summaryrenderer.form?type='${dsd.id}'>Run and Download</a>
 		</td>
 			
 		</td>
@@ -69,7 +71,7 @@ function setPage(){window.location.href=openmrsContextPath+'/module/reportingsum
 </tr>
 </table>
 <div id="excecuteQuery">
-<input type="hidden" id="dsdCode" name="dsdCode" />
+<input type="hidden" id="dsdId" name="dsdId" />
 <input type="hidden" id="outputType" name="outputType">
 <table >
 	<tr>

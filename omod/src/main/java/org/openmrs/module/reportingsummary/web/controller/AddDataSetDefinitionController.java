@@ -170,12 +170,6 @@ public class  AddDataSetDefinitionController {
 		}
 		
 		
-		
-		
-		
-		
-		
-		
 		model.addAttribute("user", Context.getAuthenticatedUser());
 		return "/module/reportingsummary/manage";
 	}

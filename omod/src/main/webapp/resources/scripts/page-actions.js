@@ -170,15 +170,16 @@ var CHECK =
 			width: '40%',
 			buttons: {
 				"Run": function() {
-					var data = jQuery.ajax(
-							{
-								type:"GET"
-								,url: "resultExecuteReport.form"
-								,data: ({startDate :jQuery("#startDate").val(),endDate : jQuery("#endDate").val(), reportId : jQuery("#reportId").val(),})	
-								,async: false
-								, cache : false
-							}).responseText;
-					jQuery("#divResults").html(data);
+//					var data = jQuery.ajax(
+//							{
+//								type:"GET"
+//								,url: "executeSummaries.form"
+//								,data: ({startDate :jQuery("#startDate").val(),endDate : jQuery("#endDate").val(), reportId : jQuery("#reportId").val(),})
+//								,data: ({patientId: jQuery("patientId").val(),}
+//								,async: false
+//								, cache : false
+//							}).responseText;
+					jQuery(location).attr("href","executeSummaries.form?id="+jQuery("#patientId").val()+"&dsdId="+jQuery("#dsdId").val()+"&view=csv");
 					
 				},
 				Close: function() {

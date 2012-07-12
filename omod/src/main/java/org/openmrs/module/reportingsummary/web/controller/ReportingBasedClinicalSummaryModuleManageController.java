@@ -120,7 +120,7 @@ public class  ReportingBasedClinicalSummaryModuleManageController {
 		}
 		
 		PatientDataSetDefinition definition=new PatientDataSetDefinition();
-		definition = PatientDatasetDefinitionMaker.PatientDatasetDefinition(params);
+//		definition = PatientDatasetDefinitionMaker.PatientDatasetDefinition(params);
 		//definition.addColumn("id", new PatientIdDataDefinition(), StringUtils.EMPTY, new ObjectFormatter());
      
         AgeCohortDefinition ageFilter=new AgeCohortDefinition();
